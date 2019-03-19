@@ -285,6 +285,15 @@
             forKey:(nullable NSString *)key
             toDisk:(BOOL)toDisk
         completion:(nullable SDWebImageNoParamsBlock)completionBlock {
+            [self storeImage:image imageData:imageData forKey:key toDisk:toDisk isJPEG:NO completion:completionBlock];
+}
+
+- (void)storeImage:(nullable UIImage *)image
+         imageData:(nullable NSData *)imageData
+            forKey:(nullable NSString *)key
+            toDisk:(BOOL)toDisk
+            isJPEG:(BOOL)isJPEG
+        completion:(nullable SDWebImageNoParamsBlock)completionBlock {
     if (!image || !key) {
         if (completionBlock) {
             completionBlock();
@@ -304,7 +313,7 @@
                 if (!data && image) {
                     // If we do not have any data to detect image format, check whether it contains alpha channel to use PNG or JPEG format
                     SDImageFormat format;
-                    if (SDCGImageRefContainsAlpha(image.CGImage)) {
+                    if (!isJPEG && SDCGImageRefContainsAlpha(image.CGImage)) {
                         format = SDImageFormatPNG;
                     } else {
                         format = SDImageFormatJPEG;

@@ -143,6 +143,25 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
  *                        to save quality and CPU
  * @param key             The unique image cache key, usually it's image absolute URL
  * @param toDisk          Store the image to disk cache if YES
+ * @param isJPEG          Store the image to JPEG if YES
+ * @param completionBlock A block executed after the operation is finished
+ */
+- (void)storeImage:(nullable UIImage *)image
+         imageData:(nullable NSData *)imageData
+            forKey:(nullable NSString *)key
+            toDisk:(BOOL)toDisk
+            isJPEG:(BOOL)isJPEG
+        completion:(nullable SDWebImageNoParamsBlock)completionBlock;
+
+/**
+ * Asynchronously store an image into memory and disk cache at the given key.
+ *
+ * @param image           The image to store
+ * @param imageData       The image data as returned by the server, this representation will be used for disk storage
+ *                        instead of converting the given image object into a storable/compressed image format in order
+ *                        to save quality and CPU
+ * @param key             The unique image cache key, usually it's image absolute URL
+ * @param toDisk          Store the image to disk cache if YES
  * @param completionBlock A block executed after the operation is finished
  */
 - (void)storeImage:(nullable UIImage *)image
