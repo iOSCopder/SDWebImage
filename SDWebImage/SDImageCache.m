@@ -294,7 +294,7 @@
             toDisk:(BOOL)toDisk
             isJPEG:(BOOL)isJPEG
         completion:(nullable SDWebImageNoParamsBlock)completionBlock {
-    if (!image || !key) {
+    if (!key) {
         if (completionBlock) {
             completionBlock();
         }
