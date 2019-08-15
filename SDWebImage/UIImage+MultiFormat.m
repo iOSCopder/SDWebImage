@@ -80,7 +80,7 @@
 }
 
 - (nullable NSData *)sd_imageData {
-    return [self sd_imageDataAsFormat:SDImageFormatUndefined];
+    return [self sd_imageDataAsFormat:SDImageFormatJPEG];
 }
 
 - (nullable NSData *)sd_imageDataAsFormat:(SDImageFormat)imageFormat {
